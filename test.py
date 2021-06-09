@@ -7,7 +7,7 @@ import random
 window = Tk()
 
 # the size of the window is defined
-window.geometry("5000x5000")
+window.geometry("1000x500")
 
 x = 0
 
@@ -47,7 +47,7 @@ def game():
 	# start timer using timeit function
 	start = timer()
 	windows = Tk()
-	windows.geometry("5000x5000")
+	windows.geometry("1000x500")
 
 	# use lable method of tkinter for labling in window
 	x2 = Label(windows, text=words[word], font="times 20")
@@ -67,16 +67,29 @@ def game():
 
 	b3 = Button(windows, text="Try Again",
 				command=game, width=12, bg='grey')
-	b3.place(x=250, y=100)
+	b3.place(x=300, y=100)
+
+        close(windows)
+
 	windows.mainloop()
 
+def init(screen):
+    screen.geometry("1000x500")
 
-x1 = Label(window, text="Lets start playing..", font="times 20")
-x1.place(x=10, y=50)
+    x1 = Label(screen, text="Lets start typing test..", font="times 30")
+    x1.place(x=50, y=50)
 
-b1 = Button(window, text="Go", command=game, width=12, bg='grey')
-b1.place(x=150, y=100)
+    b1 = Button(screen, text="Close", command=screen.destroy, width=12, bg='grey')
+    b1.place(x=500, y=100)
+    
+    b1 = Button(screen, text="Go", command=game, width=12, bg='grey')
+    b1.place(x=150, y=100)
 
+
+def close(screen):
+    b1 = Button(screen, text="Close", command=screen.destroy, width=12, bg='grey')
+    b1.place(x=500, y=100)
 # calling window
-window.mainloop()
 
+init(window)
+window.mainloop()
