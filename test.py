@@ -38,9 +38,11 @@ def trial_test():
                         #wpm = (word_count/5)/(((int)(end-start))/60.0)
                         wpm = (int)((word_count/5)/((end-start)/60))
                         current_idx = len(user_credentials) - 1
-                        if user_credentials[current_idx] < wpm:
+                        if user_credentials[current_idx][1] < wpm:
+                            user = user_credentials[current_idx]
+                            user[1] = wpm
                             user_credentials.pop(current_idx)
-                            user_credentials.insert(current_idx, wpm)
+                            user_credentials.insert(current_idx, user)
                         result.insert(0, wpm)
         	elif entry.get() == "":
                         result.insert(0, "")
@@ -176,8 +178,8 @@ def user_login():
     def check_credentials():
         if (user_name.get(), user_password.get()) in user_database.items():
             test_option()
-            user_credentials.append(user_name.get())
-            user_credentials.append(0)
+            user = [user_name.get(), 0]
+            user_credentials.append(user)
         else:
             user_login.destroy()
     user_login = Tk()
@@ -198,12 +200,32 @@ def user_login():
     b2 = Button(user_login, text="Close", command=user_login.destroy, width=12, bg='grey')
     b2.place(x=600, y=300)
 
-    
+def display_record():
+        display_record = Tk()     
+        display_record.geometry("1000x500")
+        x1 = Label(display_record, text="High Scores", font=("Arial",30))
+        x1.place(x=400, y=50)
+        #cols = ('Name', 'Score')
+        total_rows = len(user_credentials)
+        total_columns = len(user_credentials[0])
+        print("total rows "+str(total_rows)+" total columns "+str(total_columns))
+        for i in range(total_rows):
+            for j in range(total_columns): 
+                e = Entry(display_record, width=20, fg='blue',
+                        font=('Arial', 16, 'bold'))
+                e.grid(row=i, column=j)
+                e.insert(END, user_credentials[i][j])
+        #b1 = Button(display_record, text="Show scores", width=15, command=display_record)
+        #b1.place(x=250, y=400)
+        b2 = Button(display_record, text="Close", width=15, command=exit)
+        b2.place(x=700, y=400)
+ 
 def admin_login():
     def check_credentials():
         if (admin_name.get(), admin_password.get()) in admin_database.items():
             print("Admin login successful")
             print(user_credentials)
+            display_record()
             # print user heighest data
         else:
             admin_login.destroy()
