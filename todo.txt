@@ -1,0 +1,13 @@
+---1. Add option of word, sentence then paragraph
+---2. create user login for typing test record
+---3. display
+---4. Add close button to close the application
+5. GUI module: GUI module is needed to start, stop test, show timings.
+6. Admin: To monitor individual user's credentials, test score and progress.
+7. User: Create user account, maintain individual user's test score and respective progress.
+8. Test: Test module will provide users a random set of sentences to test user speed oftyping.
+---9. Display timing on screen
+---10. calculate RPM
+11. adjust paragraph in paragraph format and entry also 
+12. Valid/Invalid login print
+13. sort it as heighest
